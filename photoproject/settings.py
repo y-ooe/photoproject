@@ -11,24 +11,35 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-nx0e%d*zbb8y0fhi1faa)1)c+izj1vid!&1270c&518hne@4a8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
 ALLOWED_HOSTS = []
 
 
 # Application definition
+import environ
+
+# プロジェクトのルートディレクトリを取得
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# .envファイルを読み込む
+env = environ.Env()
+env.read_env(os.path.join(BASE_DIR, '.env'))
+
+# .envファイルから各環境変数を読み込む
+SECRET_KEY = env('SECRET_KEY')
+DEBUG = env.bool('DEBUG')
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -123,7 +134,6 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-import os
 STATIC_URL = 'static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
