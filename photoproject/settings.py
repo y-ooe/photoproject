@@ -145,11 +145,8 @@ MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
-DEFAULT_FROM_EMAIL = 'fko2447054@stu.o-hara.ac.jp' # 自分のメールアドレス
 EMAIL_HOST = 'smtp-mail.outlook.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'fko2447054@stu.o-hara.ac.jp' # 自分のメールアドレス
-EMAIL_HOST_PASSWORD = 'xxx' # 自分のアカウントのパスワード
 EMAIL_USE_TLS = True
 
 
